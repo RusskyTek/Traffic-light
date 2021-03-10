@@ -1,53 +1,47 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { Footer } from "./footer.js";
 
 //primer componente
-export class Semaforo extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			selected: ""
-		};
-	}
-	render() {
-		return (
+const Semaforo = () => {
+	const [selected, setSelected] = useState(""); //selected es estado --- setSelected funcion que modifica estado
+
+	return (
+		<React.Fragment>
 			<div className="container">
 				<div id="semaforo">
 					<div
 						className={
 							"red light " +
-							(this.state.selected == "red" ? "selected" : "")
+							(selected === "red" ? "selected" : "")
 						}
 						onClick={() => {
-							this.setState({ selected: "red" });
+							setSelected("red");
 						}}
 					/>
 					<div
 						className={
 							"yellow light " +
-							(this.state.selected == "yellow" ? "selected" : "")
+							(selected === "yellow" ? "selected" : "")
 						}
 						onClick={() => {
-							this.setState({ selected: "yellow" });
+							setSelected("yellow");
 						}}
 					/>
 					<div
 						className={
 							"green light " +
-							(this.state.selected == "green" ? "selected" : "")
+							(selected === "green" ? "selected" : "")
 						}
 						onClick={() => {
-							this.setState({ selected: "green" });
+							setSelected("green");
 						}}
 					/>
 				</div>
 			</div>
-		);
-	}
-}
 
-Semaforo.propTypes = {
-	a: PropTypes.string,
-	b: PropTypes.string,
-	c: PropTypes.string
+			<Footer />
+		</React.Fragment>
+	);
 };
+
+export default Semaforo;
